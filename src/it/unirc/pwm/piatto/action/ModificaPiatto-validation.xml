@@ -1,0 +1,40 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="piatto.nome">
+		<field-validator type="requiredstring">
+			<message key="name.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">45</param>
+			<message key="name.length"></message>
+		</field-validator>
+	</field>
+
+	<field name="piatto.prezzo">
+		<field-validator type="required">
+			<message key="price.required"></message>
+		</field-validator>
+		<field-validator type="double">
+			<message key="invalid.fieldvalue.price"></message>
+		</field-validator>
+	</field>
+
+	<field name="piatto.descrizione">
+		<field-validator type="requiredstring">
+			<message key="description.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">10</param>
+			<param name="maxLength">200</param>
+			<message key="description.length"></message>
+		</field-validator>
+	</field>
+	
+	<field name="categoria">	
+		<field-validator type="categoriavalidator">
+			<message key="categoria.required"></message>
+		</field-validator>
+	</field>
+</validators>

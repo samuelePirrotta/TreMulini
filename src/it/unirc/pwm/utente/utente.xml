@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="utente" namespace="/utente" extends="struts-default">		
+		<action name="Login" class="it.unirc.pwm.utente.action.Login">
+			<result type="redirect">/utente/secure/Authenticated.action</result>
+			<result name="input">/WEB-INF/utente/Login.jsp</result>
+		</action>		
+	</package>
+		
+	<package name="utenteSecure" namespace="/utente/secure" extends="struts-default">
+	
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+		
+		<action name="Authenticated" class="it.unirc.pwm.utente.action.Authenticated">
+			<result name="success">/WEB-INF/home/Home.jsp</result>
+		</action>		
+		<action name="Logout" class="it.unirc.pwm.utente.action.Logout">
+			<result name="success" type="redirect">/LoginRequest.action</result>
+		</action>		
+		<action name="MenuUtente">
+			<result>/WEB-INF/utente/MenuUtente.jsp</result>
+		</action>
+		<action name="ChiediCercaUtente" class="it.unirc.pwm.utente.action.ChiediCercaUtente">
+			<result name="success">/WEB-INF/utente/CercaUtente.jsp</result>
+		</action>
+		<action name="CercaUtente" class="it.unirc.pwm.utente.action.CercaUtente">
+			<result name="success">/WEB-INF/utente/CercaUtente.jsp</result>			
+			<result name="input">/WEB-INF/utente/CercaUtente.jsp</result>
+		</action>
+		<action name="NuovoUtente" class="it.unirc.pwm.utente.action.ChiediNuovoUtente">
+			<result name="success">/WEB-INF/utente/NuovoUtente.jsp</result>
+		</action>
+		<action name="SalvaUtente" class="it.unirc.pwm.utente.action.SalvaUtente">
+			<result name="success">/WEB-INF/utente/CercaUtente.jsp</result>
+			<result name="input">/WEB-INF/utente/NuovoUtente.jsp</result>
+		</action>
+		<action name="ChiediModificaUtente" class="it.unirc.pwm.utente.action.ChiediModificaUtente">
+			<result name="success">/WEB-INF/utente/ModificaUtente.jsp</result>
+		</action>
+		<action name="ModificaUtente" class="it.unirc.pwm.utente.action.ModificaUtente">
+			<result name="success">/WEB-INF/utente/CercaUtente.jsp</result>
+			<result name="input">/WEB-INF/utente/ModificaUtente.jsp</result>
+		</action>
+		<action name="EliminaUtente" class="it.unirc.pwm.utente.action.EliminaUtente">
+			<result name="success">/WEB-INF/utente/CercaUtente.jsp</result>
+			<result name="error">/WEB-INF/utente/CercaUtente.jsp</result>
+		</action>		
+	</package>
+</struts>

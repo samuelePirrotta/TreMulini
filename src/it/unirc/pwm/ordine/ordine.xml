@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ordine" namespace="/ordine" extends="struts-default">
+	
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />			
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+		
+		<action name="NuovoOrdine" class="it.unirc.pwm.ordine.action.NuovoOrdine">
+			<result name="success">/WEB-INF/ordine/NuovoOrdine.jsp</result>
+		</action>
+		<action name="AggiungiElemento" class="it.unirc.pwm.ordine.action.AggiungiElemento">
+			<result name="success">/WEB-INF/ordine/NuovoOrdine.jsp</result>
+			<result name="input">/WEB-INF/ordine/NuovoOrdine.jsp</result>
+		</action>
+		<action name="SalvaOrdine" class="it.unirc.pwm.ordine.action.SalvaOrdine">
+			<result name="success">/WEB-INF/ordine/NuovoOrdine.jsp</result>
+		</action>
+	</package>
+</struts>

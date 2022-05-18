@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 nov 2021, 21:02:09 by Hibernate Tools 5.5.7.Final -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="pwm" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.ordine_piatto.OrdinePiatto" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="ordine_piatto">
+        <composite-id class="it.unirc.pwm.ordine_piatto.OrdinePiattoId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="idOrdine" type="int">
+                <column name="id_ordine"/>
+            </key-property>
+            <key-property name="idPiatto" type="int">
+                <column name="id_piatto"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="it.unirc.pwm.ordine.Ordine" fetch="select" insert="false" name="ordine" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="id_ordine" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="it.unirc.pwm.piatto.Piatto" fetch="select" insert="false" name="piatto" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="id_piatto" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="quantita" optimistic-lock="true" type="int" unique="false">
+            <column name="quantita" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="prezzo" optimistic-lock="true" type="double" unique="false">
+            <column name="prezzo" not-null="true" precision="22" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

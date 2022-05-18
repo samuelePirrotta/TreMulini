@@ -1,0 +1,23 @@
+<button type="button" id="sidebarCollapse" class="navbar-btn">
+	<span></span> <span></span> <span></span>
+</button>
+<nav id="sidebar">
+	<div class="sidebar-header">
+		<a href="/progetto/utente/secure/Authenticated">
+			<img class="mx-auto d-block" src="/progetto/img/logo.png" width="100" height=auto>
+		</a>
+	</div>
+
+	<ul class="list-unstyled">
+		<li><a href="/progetto/piatto/MenuPiatto"> <i class="fa fa-pizza-slice" area-hidden="true">&nbsp;&nbsp;<s:text name="text.piatti" /></i></a></li>
+		<li><a href="/progetto/bevanda/MenuBevanda"> <i class="fa fa-glass-cheers" area-hidden="true">&nbsp;&nbsp;<s:text name="text.bevande" /></i></a></li>
+		<li><a href="/progetto/ordine/NuovoOrdine"> <i class="fa fa-tablet-alt" area-hidden="true">&nbsp;&nbsp;<s:text name="text.ordini" /></i></a></li>
+		<li><a href="/progetto/ingrediente/MenuIngrediente"> <i class="fa fa-pepper-hot" area-hidden="true">&nbsp;&nbsp;<s:text name="text.ingredienti" /></i></a></li>
+		<li><a href="/progetto/categoria/MenuCategoria"> <i class="fa fa-th-list" area-hidden="true">&nbsp;&nbsp;<s:text name="text.categorie" /></i></a></li>
+		<s:if test="%{#session.utente.mansione=='Admin'}">
+			<li><a href="/progetto/utente/secure/MenuUtente"> <i class="fa fa-users-cog" area-hidden="true">&nbsp;&nbsp;<s:text name="text.utenti" /></i></a></li>
+		</s:if>
+		<li><a href="/progetto/utente/secure/Logout"> <i class="fa fa-sign-out-alt" area-hidden="true">&nbsp;&nbsp;<s:text name="text.logout" /></i></a></li>
+	</ul>
+</nav>
+<!-- &nbsp; = spazio -->

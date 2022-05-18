@@ -1,0 +1,30 @@
+/************************************************************************
+							FORM STYLE
+*************************************************************************/
+/* br tag in group container */
+.wwgrp br {
+	display: none;
+}
+
+/* label */
+.wwlbl {
+	font-weight: bold;
+}
+
+.errorLabel {
+	color: red;
+}
+
+ul.actionMessage, ul.errorMessage {
+	font-weight: bold;
+	font-size: 20px;	
+	list-style: none;
+}
+
+ul.errorMessage {
+	color: red;
+}
+
+ul.actionMessage {
+	color: green;
+}

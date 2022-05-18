@@ -1,0 +1,24 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="tavolo">
+		<field-validator type="required">
+			<message key="tavolo.required"></message>
+		</field-validator>
+		<field-validator type="int">
+			<message key="invalid.fieldvalue.tavolo"></message>
+		</field-validator>
+	</field>
+
+	<field name="quantita">
+		<field-validator type="required">
+			<message key="quantita.required"></message>
+		</field-validator>
+		<field-validator type="int">
+			<message key="invalid.fieldvalue.quantita"></message>
+		</field-validator>
+		<field-validator type="quantitavalidator">
+			<message key="quantita.zero"></message>
+		</field-validator>
+	</field>
+</validators>

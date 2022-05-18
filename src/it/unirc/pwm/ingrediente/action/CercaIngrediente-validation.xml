@@ -1,0 +1,25 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="idIngrediente">
+		<field-validator type="int">
+			<message key="invalid.fieldvalue.idIngrediente"></message>
+		</field-validator>
+	</field>
+
+	<field name="nome">
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">45</param>
+			<message key="name.length"></message>
+		</field-validator>
+	</field>
+	
+	<field name="tipoAllergene">
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">45</param>
+			<message key="tipoAllergene.length"></message>
+		</field-validator>
+	</field>	
+</validators>

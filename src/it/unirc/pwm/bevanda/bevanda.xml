@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="bevanda" namespace="/bevanda" extends="struts-default">
+		
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+				
+		<action name="MenuBevanda">
+			<result>/WEB-INF/bevanda/MenuBevanda.jsp</result>
+		</action>
+		<action name="ChiediCercaBevanda" class="it.unirc.pwm.bevanda.action.ChiediCercaBevanda">
+			<interceptor-ref name="authenticationInterceptor" />
+			<interceptor-ref name="execAndWait">
+				<param name="delay">1000</param>
+			</interceptor-ref>
+			<result name="wait">/waiting.jsp</result>
+			<result name="success">/WEB-INF/bevanda/CercaBevanda.jsp</result>
+		</action>
+		<action name="CercaBevanda" class="it.unirc.pwm.bevanda.action.CercaBevanda">
+			<result name="success">/WEB-INF/bevanda/CercaBevanda.jsp</result>			
+			<result name="input">/WEB-INF/bevanda/CercaBevanda.jsp</result>
+		</action>
+		<action name="NuovaBevanda" class="it.unirc.pwm.bevanda.action.ChiediNuovaBevanda">
+			<result name="success">/WEB-INF/bevanda/NuovaBevanda.jsp</result>
+		</action>
+		<action name="SalvaBevanda" class="it.unirc.pwm.bevanda.action.SalvaBevanda">
+			<result name="success">/WEB-INF/bevanda/CercaBevanda.jsp</result>
+			<result name="input">/WEB-INF/bevanda/NuovaBevanda.jsp</result>
+		</action>
+		<action name="ChiediModificaBevanda" class="it.unirc.pwm.bevanda.action.ChiediModificaBevanda">
+			<result name="success">/WEB-INF/bevanda/ModificaBevanda.jsp</result>
+		</action>
+		<action name="ModificaBevanda" class="it.unirc.pwm.bevanda.action.ModificaBevanda">
+			<result name="success">/WEB-INF/bevanda/CercaBevanda.jsp</result>
+			<result name="input">/WEB-INF/bevanda/ModificaBevanda.jsp</result>
+		</action>
+		<action name="EliminaBevanda" class="it.unirc.pwm.bevanda.action.EliminaBevanda">
+			<result name="success">/WEB-INF/bevanda/CercaBevanda.jsp</result>
+		</action>
+	</package>
+		
+	<package name="bevandaJson" namespace="/bevanda/json" extends="json-default">
+		<action name="GetBevande" class="it.unirc.pwm.bevanda.action.android.GetBevande">
+			<result type="json" name="success"></result>
+		</action>
+	</package>	
+</struts>

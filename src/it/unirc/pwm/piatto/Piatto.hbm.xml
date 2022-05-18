@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 nov 2021, 21:02:09 by Hibernate Tools 5.5.7.Final -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="pwm" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.piatto.Piatto" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="piatto">
+        <id name="idPiatto" type="java.lang.Integer">
+            <column name="id_piatto"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="nome" optimistic-lock="true" type="string" unique="false">
+            <column length="70" name="nome" not-null="true" unique="true"/>
+        </property>
+        <many-to-one class="it.unirc.pwm.categoria.Categoria" lazy="false" fetch="select" insert="true" name="categoria" not-found="exception" optimistic-lock="true" unique="false" update="true"/>
+        <property generated="never" lazy="false" name="prezzo" optimistic-lock="true" type="double" unique="false">
+            <column name="prezzo" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="descrizione" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="descrizione" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="false" lazy="false" mutable="true" name="ingredienti" optimistic-lock="true" sort="unsorted" table="piatto_ingrediente">
+            <key on-delete="noaction">
+                <column name="id_piatto" not-null="true"/>
+            </key>
+            <many-to-many entity-name="it.unirc.pwm.ingrediente.Ingrediente" not-found="exception" unique="false">
+                <column name="id_ingrediente" not-null="true"/>
+            </many-to-many>
+        </set>
+        <!--<set fetch="select" inverse="true" lazy="true" mutable="true" name="ordinePiatto" optimistic-lock="true" sort="unsorted" table="ordine_piatto">
+            <key on-delete="noaction">
+                <column name="id_piatto" not-null="true"/>
+            </key>
+            <one-to-many class="it.unirc.pwm.ordine_piatto.OrdinePiatto" not-found="exception"/>
+        </set>-->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="categoria" namespace="/categoria" extends="struts-default">
+	
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+		
+		<action name="MenuCategoria">
+			<result>/WEB-INF/categoria/MenuCategoria.jsp</result>
+		</action>
+		<action name="ChiediCercaCategoria" class="it.unirc.pwm.categoria.action.ChiediCercaCategoria">		
+			<interceptor-ref name="authenticationInterceptor" />
+			<interceptor-ref name="execAndWait">
+				<param name="delay">1000</param>
+			</interceptor-ref>
+			<result name="wait">/waiting.jsp</result>
+			<result name="success">/WEB-INF/categoria/CercaCategoria.jsp</result>
+		</action>
+		<action name="CercaCategoria" class="it.unirc.pwm.categoria.action.CercaCategoria">
+			<result name="success">/WEB-INF/categoria/CercaCategoria.jsp</result>			
+			<result name="input">/WEB-INF/categoria/CercaCategoria.jsp</result>
+		</action>
+		<action name="NuovaCategoria" class="it.unirc.pwm.categoria.action.ChiediNuovaCategoria">
+			<result name="success">/WEB-INF/categoria/NuovaCategoria.jsp</result>
+		</action>
+		<action name="SalvaCategoria" class="it.unirc.pwm.categoria.action.SalvaCategoria">
+			<result name="success">/WEB-INF/categoria/CercaCategoria.jsp</result>
+			<result name="input">/WEB-INF/categoria/NuovaCategoria.jsp</result>
+		</action>
+		<action name="ChiediModificaCategoria" class="it.unirc.pwm.categoria.action.ChiediModificaCategoria">
+			<result name="success">/WEB-INF/categoria/ModificaCategoria.jsp</result>
+		</action>
+		<action name="ModificaCategoria" class="it.unirc.pwm.categoria.action.ModificaCategoria">
+			<result name="success">/WEB-INF/categoria/CercaCategoria.jsp</result>
+			<result name="input">/WEB-INF/categoria/ModificaCategoria.jsp</result>
+		</action>
+		<action name="EliminaCategoria" class="it.unirc.pwm.categoria.action.EliminaCategoria">
+			<result name="success">/WEB-INF/categoria/CercaCategoria.jsp</result>
+		</action>
+	</package>
+	
+	<package name="categoriaJson" namespace="/categoria/json" extends="json-default">
+		<action name="GetCategorie" class="it.unirc.pwm.categoria.action.android.GetCategorie">
+			<result type="json" name="success"></result>
+		</action>
+
+	</package>
+</struts>

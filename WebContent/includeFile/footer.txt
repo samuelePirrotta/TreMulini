@@ -1,0 +1,8 @@
+<div id="footer">
+	<p>
+	<h5>Esame Programmazione Web e Mobile</h5>
+	<h5>Pizzeria TreMulini &copy; 2022</h5>
+	<p>
+	<h6>Studenti: Samuele Pirrotta - Demetrio Campolo</h6>
+	<p>
+</div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="piatto" namespace="/piatto" extends="struts-default">
+	
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+		
+		<action name="MenuPiatto">
+			<result>/WEB-INF/piatto/MenuPiatto.jsp</result>
+		</action>
+		<action name="ChiediCercaPiatto" class="it.unirc.pwm.piatto.action.ChiediCercaPiatto">
+			<interceptor-ref name="authenticationInterceptor" />
+			<interceptor-ref name="execAndWait">
+				<param name="delay">1000</param>
+			</interceptor-ref>
+			<result name="wait">/waiting.jsp</result>
+			<result name="success">/WEB-INF/piatto/CercaPiatto.jsp</result>
+		</action>
+		 <action name="CercaPiatto" class="it.unirc.pwm.piatto.action.CercaPiatto">
+			<result name="success">/WEB-INF/piatto/CercaPiatto.jsp</result>			
+			<result name="input">/WEB-INF/piatto/CercaPiatto.jsp</result>
+		</action>
+		<action name="NuovoPiatto" class="it.unirc.pwm.piatto.action.ChiediNuovoPiatto">
+			<result name="success">/WEB-INF/piatto/NuovoPiatto.jsp</result>
+		</action>
+		 <action name="SalvaPiatto" class="it.unirc.pwm.piatto.action.SalvaPiatto">
+			<result name="success">/WEB-INF/piatto/ModificaPiatto.jsp</result>
+			<result name="input" type="redirect">/piatto/NuovoPiatto.action</result>
+		</action>
+		<action name="ChiediModificaPiatto" class="it.unirc.pwm.piatto.action.ChiediModificaPiatto">
+			<result name="success">/WEB-INF/piatto/ModificaPiatto.jsp</result>
+		</action>
+		<action name="ModificaPiatto" class="it.unirc.pwm.piatto.action.ModificaPiatto">
+			<result name="success">/WEB-INF/piatto/ModificaPiatto.jsp</result>
+			<result name="input">/WEB-INF/piatto/ModificaPiatto.jsp</result>
+		</action>
+		<action name="EliminaPiatto" class="it.unirc.pwm.piatto.action.EliminaPiatto">
+			<result name="success">/WEB-INF/piatto/CercaPiatto.jsp</result>
+		</action>
+	</package>
+	
+	<package name="piattoJson" namespace="/piatto/json" extends="json-default">
+		<action name="GetPiatti" class="it.unirc.pwm.piatto.action.android.GetPiatti">
+			<result type="json" name="success"></result>
+		</action>
+	</package>
+</struts>

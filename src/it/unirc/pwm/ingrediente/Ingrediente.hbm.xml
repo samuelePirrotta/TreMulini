@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 nov 2021, 21:02:09 by Hibernate Tools 5.5.7.Final -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="pwm" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.ingrediente.Ingrediente" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="ingrediente">
+        <id name="idIngrediente" type="java.lang.Integer">
+            <column name="id_ingrediente"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="nome" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="nome" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="allergene" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="allergene" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="tipoAllergene" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="tipo_allergene"/>
+        </property>
+        <property generated="never" lazy="false" name="prezzo" optimistic-lock="true" type="double" unique="false">
+            <column name="prezzo" not-null="true" precision="22" scale="0"/>
+        </property>
+        <!-- NON VOGLIO CHE L'INGREDIENTE SI PORTI DIETRO I PIATTI A CUI APPARTIENE QUINDI NON LO MAPPO
+        <set embed-xml="true" fetch="select" inverse="true" lazy="false" mutable="true" name="piatti" optimistic-lock="true" sort="unsorted" table="piatto_ingrediente">
+            <key on-delete="noaction">
+                <column name="id_ingrediente" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="it.unirc.pwm.piatto.Piatto" not-found="exception" unique="false">
+                <column name="id_piatto" not-null="true"/>
+            </many-to-many>
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

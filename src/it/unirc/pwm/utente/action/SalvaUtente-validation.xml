@@ -1,0 +1,49 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="nome">
+		<field-validator type="requiredstring">
+			<message key="username.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">45</param>
+			<message key="username.length"></message>
+		</field-validator>
+	</field>
+	
+	<field name="mansione">
+		<field-validator type="requiredstring">
+			<message key="mansione.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">45</param>
+			<message key="mansione.length"></message>
+		</field-validator>
+	</field>
+	
+	<field name="password">
+		<field-validator type="requiredstring">
+			<message key="password.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">8</param>
+			<param name="maxLength">16</param>
+			<message key="password.length"></message>
+		</field-validator>
+		<field-validator type="passwordstrenght">
+			<message key="password.strenght"></message>
+		</field-validator>
+	</field>
+	
+	<validator type="expression">
+		<param name="expression">nome != password</param>
+		<message key="nome.equal.password"></message>
+	</validator>
+	
+	<validator type="expression">
+		<param name="expression">confermaPassword == password</param>
+		<message key="password.noconfirm"></message>
+	</validator>
+</validators>

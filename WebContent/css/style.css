@@ -1,0 +1,53 @@
+/* ---------------------------------------------------
+    GENERAL STYLE
+----------------------------------------------------- */
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color:#ffebcd;
+}
+
+div.center {
+	text-align: center;
+	vertical-align: middle;
+}
+
+img.resize {
+	width: 300px; 
+	height: auto;
+}
+
+/* ---------------------------------------------------
+    ICON BUTTON STYLE
+----------------------------------------------------- */
+.icon-btn {
+	background-color: #56360b;
+	color: #dadada;
+	border-color: #56360b;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	box-shadow: 5px 5px 8px grey;
+	transition: all 1s;
+}
+
+.icon-btn:hover {
+	background-color: #dadada;
+	color: #56360b;
+	border-color: #dadada; box-shadow : 5px 5px 10px black;
+	transition: all 1s;
+	box-shadow: 5px 5px 10px black;
+	cursor: pointer;
+}
+
+/* ---------------------------------------------------
+    FOOTER STYLE
+----------------------------------------------------- */
+#footer {
+	width: 1000px; margin : 0 auto;
+	text-align: center;
+	color: grey;
+	margin: 0 auto; text-align : center; color : grey;
+	opacity: 50%;
+}

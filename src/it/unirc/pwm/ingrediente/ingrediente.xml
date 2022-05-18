@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ingrediente" namespace="/ingrediente" extends="struts-default">
+	
+		<interceptors>
+			<!-- definizione di un nuovo interceptor -->
+			<interceptor name="authenticationInterceptor" class="it.unirc.pwm.utente.action.AuthenticationInterceptor" />
+			<!-- definizione di un nuovo stack di interceptor -->
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- settaggio dello stack di interceptor per il package corrente -->
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirect">/LoginRequest.action</result>
+		</global-results>
+		
+		<action name="MenuIngrediente">
+			<result>/WEB-INF/ingrediente/MenuIngrediente.jsp</result>
+		</action>
+		 <action name="ChiediCercaIngrediente" class="it.unirc.pwm.ingrediente.action.ChiediCercaIngrediente">
+			<interceptor-ref name="authenticationInterceptor" />
+		 	<interceptor-ref name="execAndWait">
+				<param name="delay">1000</param>
+			</interceptor-ref>
+			<result name="wait">/waiting.jsp</result>
+			<result name="success">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+		</action>
+		<action name="CercaIngrediente" class="it.unirc.pwm.ingrediente.action.CercaIngrediente">
+			<result name="success">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>			
+			<result name="input">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+		</action>
+		<action name="NuovoIngrediente" class="it.unirc.pwm.ingrediente.action.ChiediNuovoIngrediente">
+			<result name="success">/WEB-INF/ingrediente/NuovoIngrediente.jsp</result>
+		</action>
+		<action name="SalvaIngrediente" class="it.unirc.pwm.ingrediente.action.SalvaIngrediente">
+			<result name="success">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+			<result name="input">/WEB-INF/ingrediente/NuovoIngrediente.jsp</result>
+		</action>
+		<action name="ChiediModificaIngrediente" class="it.unirc.pwm.ingrediente.action.ChiediModificaIngrediente">
+			<result name="success">/WEB-INF/ingrediente/ModificaIngrediente.jsp</result>
+		</action>
+		<action name="ModificaIngrediente" class="it.unirc.pwm.ingrediente.action.ModificaIngrediente">
+			<result name="success">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+			<result name="input">/WEB-INF/ingrediente/ModificaIngrediente.jsp</result>
+		</action>
+		<action name="EliminaIngrediente" class="it.unirc.pwm.ingrediente.action.EliminaIngrediente">
+			<result name="success">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+			<result name="error">/WEB-INF/ingrediente/CercaIngrediente.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 nov 2021, 21:02:09 by Hibernate Tools 5.5.7.Final -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="pwm" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.categoria.Categoria" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="categoria">
+        <id name="idCategoria" type="java.lang.Integer">
+            <column name="id_categoria"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="nome" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="nome" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="tipo" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="tipo" not-null="true" unique="false"/>
+        </property>
+    </class>
+</hibernate-mapping>
